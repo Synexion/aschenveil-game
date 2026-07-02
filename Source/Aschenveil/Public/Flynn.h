@@ -35,6 +35,14 @@ protected:
 	UInputAction* IA_Deplacement;
 	UPROPERTY(EditAnywhere)
 	UInputAction* IA_Camera;
+	UPROPERTY(EditAnywhere)
+	UInputAction* IA_Sprint;
+
+	// Fonction de sprint
+	bool bIsSprinting;
+
+	void SprintStart();
+	void SprintStop();
 
 	// Fonction
 

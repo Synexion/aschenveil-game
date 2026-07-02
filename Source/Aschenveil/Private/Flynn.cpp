@@ -36,6 +36,10 @@ AFlynn::AFlynn()
 	// Flynn s'oriente dans la direction du mouvement
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 
+	// Vitesse de rotation
+	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
+
+
 }
 
 // Called when the game starts or when spawned
@@ -71,6 +75,8 @@ void AFlynn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	{
 		EIC->BindAction(IA_Deplacement, ETriggerEvent::Triggered, this, &AFlynn::Deplacer);
 		EIC->BindAction(IA_Camera, ETriggerEvent::Triggered, this, &AFlynn::RotationCamera);
+		EIC->BindAction(IA_Sprint, ETriggerEvent::Started, this, &AFlynn::SprintStart);
+		EIC->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &AFlynn::SprintStop);
 	}
 }
 
@@ -98,4 +104,18 @@ void AFlynn::RotationCamera(const FInputActionValue& Value) {
 	AddControllerYawInput(MouseInput.X);
 	// Rotation haut-bas , via Pitch ( Pitch = axe Y )
 	AddControllerPitchInput(MouseInput.Y);
+}
+
+// Fonction de sprint
+void AFlynn::SprintStart()
+{
+	bIsSprinting = true;
+	GetCharacterMovement()->MaxWalkSpeed = 1200.0f;
+	UE_LOG(LogTemp, Warning, TEXT("SprintStart"));
+ }
+
+void AFlynn::SprintStop()
+{
+	bIsSprinting = false;
+	GetCharacterMovement()->MaxWalkSpeed = 500.0f;
 }
