@@ -24,6 +24,10 @@ AFlynn::AFlynn()
 	// SpringArm suit la rotation de la camera
 	SpringArm->bUsePawnControlRotation = true;
 
+	//Positionnement du springArm par defaut
+	SpringArm->TargetArmLength = 180.0f;
+	SpringArm->SetRelativeLocation(FVector(0.0f, 18.0f, 70.0f));
+
 	// Flynn ne tourne pas avec la caméra
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationPitch = false;
