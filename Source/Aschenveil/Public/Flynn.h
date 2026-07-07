@@ -12,6 +12,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UInputMappingContext;
 class UInputAction;
+class UHealthComponent;
 
 UCLASS()
 class ASCHENVEIL_API AFlynn : public ACharacter
@@ -37,6 +38,8 @@ protected:
 	UInputAction* IA_Camera;
 	UPROPERTY(EditAnywhere)
 	UInputAction* IA_Sprint;
+	UPROPERTY(VisibleAnywhere)
+	UHealthComponent* HealthComponent;
 
 	// Fonction de sprint
 	bool bIsSprinting;

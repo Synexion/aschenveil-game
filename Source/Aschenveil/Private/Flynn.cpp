@@ -7,6 +7,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "HealthComponent.h"
 
 
 // Sets default values
@@ -17,6 +18,7 @@ AFlynn::AFlynn()
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	HealthComponent = CreateDefaultSubobject<UHealthComponent>(TEXT("HealthComponent"));
 	
 	SpringArm->SetupAttachment(RootComponent);
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
@@ -39,7 +41,6 @@ AFlynn::AFlynn()
 	// Vitesse de rotation
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
 
-
 }
 
 // Called when the game starts or when spawned
@@ -56,7 +57,7 @@ void AFlynn::BeginPlay()
 		}
 			
 	}
-	
+
 }
 
 // Called every frame

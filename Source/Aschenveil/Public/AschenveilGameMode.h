@@ -14,4 +14,6 @@ class ASCHENVEIL_API AAschenveilGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 	
+	public:
+		AAschenveilGameMode();
 };
