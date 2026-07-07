@@ -40,6 +40,8 @@ protected:
 	UInputAction* IA_Sprint;
 	UPROPERTY(VisibleAnywhere)
 	UHealthComponent* HealthComponent;
+	UPROPERTY(EditAnywhere)
+	UInputAction* IA_Attaque;
 
 	// Fonction de sprint
 	bool bIsSprinting;
@@ -51,6 +53,9 @@ protected:
 
 	void Deplacer(const FInputActionValue& Value);
 	void RotationCamera(const FInputActionValue& Value);
+
+	// Fonction Attaque
+	void Attaquer();
 
 public:	
 	// Called every frame

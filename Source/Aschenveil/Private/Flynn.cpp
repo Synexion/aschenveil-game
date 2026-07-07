@@ -78,6 +78,7 @@ void AFlynn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		EIC->BindAction(IA_Camera, ETriggerEvent::Triggered, this, &AFlynn::RotationCamera);
 		EIC->BindAction(IA_Sprint, ETriggerEvent::Started, this, &AFlynn::SprintStart);
 		EIC->BindAction(IA_Sprint, ETriggerEvent::Completed, this, &AFlynn::SprintStop);
+		EIC->BindAction(IA_Attaque, ETriggerEvent::Started, this, &AFlynn::Attaquer);
 	}
 }
 
@@ -119,4 +120,38 @@ void AFlynn::SprintStop()
 {
 	bIsSprinting = false;
 	GetCharacterMovement()->MaxWalkSpeed = 500.0f;
+}
+
+// Attaque
+
+void AFlynn::Attaquer()
+{
+	FVector Start = GetActorLocation();
+	FVector End = Start + GetActorForwardVector() * 150.0f;
+	float Rayon = 50.0f;
+
+	FHitResult HitResult;
+	FCollisionQueryParams Params;
+	Params.AddIgnoredActor(this);
+
+	bool bTouche = GetWorld()->SweepSingleByChannel(
+		HitResult,
+		Start,
+		End,
+		FQuat::Identity,
+		ECC_Pawn,
+		FCollisionShape::MakeSphere(Rayon),
+		Params
+	);
+
+	if (bTouche)
+	{
+		AActor* Cible = HitResult.GetActor();
+		UHealthComponent* HealthCible = Cible->FindComponentByClass<UHealthComponent>();
+
+		if (HealthCible)
+		{
+			HealthCible->AppliquerDegats(25.0f);
+		}
+	}
 }

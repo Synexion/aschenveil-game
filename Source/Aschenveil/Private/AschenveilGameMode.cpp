@@ -6,10 +6,7 @@
 
 AAschenveilGameMode::AAschenveilGameMode()
 {
-    static ConstructorHelpers::FClassFinder<APawn> PawnClass(TEXT("/Game/Blueprint/BP_Flynn"));
-    if (PawnClass.Succeeded())
-    {
-        DefaultPawnClass = PawnClass.Class;
-    }
+    DefaultPawnClass = AFlynn::StaticClass();
 }
+
 
