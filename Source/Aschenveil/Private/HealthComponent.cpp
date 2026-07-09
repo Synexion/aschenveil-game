@@ -38,11 +38,16 @@ void UHealthComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActo
 void UHealthComponent::AppliquerDegats(float DamageAmount) {
 	CurrentHealth -= DamageAmount;
 
-	if (CurrentHealth < 0) {
+	UE_LOG(LogTemp, Warning, TEXT("Degats recus : %f, PV restants : %f"), DamageAmount, CurrentHealth);
+
+	if (CurrentHealth <= 0)
+	{
 		CurrentHealth = 0;
+		UE_LOG(LogTemp, Warning, TEXT("Ennemi mort"));
+		GetOwner()->Destroy();
 	}
 
-	UE_LOG(LogTemp, Warning, TEXT("PV restant : %f"), CurrentHealth);
+
 }
 
 float UHealthComponent::GetCurrentHealth() {

@@ -126,6 +126,8 @@ void AFlynn::SprintStop()
 
 void AFlynn::Attaquer()
 {
+	UE_LOG(LogTemp, Warning, TEXT("Attaquer appele"));
+
 	
 	if (AM_Attaque) {
 		PlayAnimMontage(AM_Attaque);
@@ -148,6 +150,9 @@ void AFlynn::Attaquer()
 		FCollisionShape::MakeSphere(Rayon),
 		Params
 	);
+
+	UE_LOG(LogTemp, Warning, TEXT("bTouche : %d"), bTouche);
+
 
 	if (bTouche)
 	{

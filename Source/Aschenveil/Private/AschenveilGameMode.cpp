@@ -6,7 +6,7 @@
 
 AAschenveilGameMode::AAschenveilGameMode()
 {
-    DefaultPawnClass = AFlynn::StaticClass();
+    DefaultPawnClass = nullptr;
 }
 
 
