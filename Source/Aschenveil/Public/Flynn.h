@@ -42,6 +42,9 @@ protected:
 	UHealthComponent* HealthComponent;
 	UPROPERTY(EditAnywhere)
 	UInputAction* IA_Attaque;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	UAnimMontage* AM_Attaque;
+
 
 	// Fonction de sprint
 	bool bIsSprinting;

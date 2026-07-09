@@ -126,6 +126,11 @@ void AFlynn::SprintStop()
 
 void AFlynn::Attaquer()
 {
+	
+	if (AM_Attaque) {
+		PlayAnimMontage(AM_Attaque);
+	}
+
 	FVector Start = GetActorLocation();
 	FVector End = Start + GetActorForwardVector() * 150.0f;
 	float Rayon = 50.0f;
@@ -147,11 +152,18 @@ void AFlynn::Attaquer()
 	if (bTouche)
 	{
 		AActor* Cible = HitResult.GetActor();
-		UHealthComponent* HealthCible = Cible->FindComponentByClass<UHealthComponent>();
 
-		if (HealthCible)
+		if (Cible && Cible != this)
 		{
-			HealthCible->AppliquerDegats(25.0f);
+			UHealthComponent* HealthCible = Cible->FindComponentByClass<UHealthComponent>();
+
+			if (HealthCible)
+			{
+				HealthCible->AppliquerDegats(25.0f);
+			}
 		}
 	}
+
+
+
 }
