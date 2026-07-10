@@ -43,13 +43,19 @@ void UHealthComponent::AppliquerDegats(float DamageAmount) {
 	if (CurrentHealth <= 0)
 	{
 		CurrentHealth = 0;
-		UE_LOG(LogTemp, Warning, TEXT("Ennemi mort"));
-		GetOwner()->Destroy();
+		UE_LOG(LogTemp, Warning, TEXT("Mort"));
+		OnMort.Broadcast();
 	}
 
 
 }
 
-float UHealthComponent::GetCurrentHealth() {
+float UHealthComponent::GetCurrentHealth() 
+{
 	return CurrentHealth;
+}
+
+float UHealthComponent::GetMaxHealth()
+{
+	return MaxHealth;
 }

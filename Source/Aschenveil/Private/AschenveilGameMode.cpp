@@ -3,10 +3,12 @@
 
 #include "AschenveilGameMode.h"
 #include "Flynn.h"
+#include "AschenveilHUD.h"
 
 AAschenveilGameMode::AAschenveilGameMode()
 {
     DefaultPawnClass = nullptr;
+    HUDClass = AAschenveilHUD::StaticClass();
 }
 
 

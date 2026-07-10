@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "HealthComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnMort);
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class ASCHENVEIL_API UHealthComponent : public UActorComponent
@@ -31,6 +32,9 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	void AppliquerDegats(float DamageAmount);
-
 	float GetCurrentHealth();
+	float GetMaxHealth();
+
+	UPROPERTY(BlueprintAssignable)
+	FOnMort OnMort;
 };
